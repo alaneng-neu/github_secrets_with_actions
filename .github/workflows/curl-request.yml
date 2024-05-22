@@ -10,15 +10,18 @@ jobs:
     
     steps:
       - name: Set environment variable from GitHub secret
+        shell: bash
         env:
           REQ_SECRET: ${{ secrets.REQ_SECRET }}
         run: echo "REQ_SECRET=$REQ_SECRET" >> $GITHUB_ENV
 
       - name: Verify secret loads correctly
-        run: echo "$REQ_SECRET"
+        shell: bash
+        run: echo $REQ_SECRET
     
       - name: Send POST request
         # Inspect requests at https://public.requestbin.com/r/enw9z3kw0afbh
+        shell: bash
         run: |
-          curl -H "Authorization: $MY_SECRET" -X POST "https://enw9z3kw0afbh.x.pipedream.net"
+          curl -H "Authorization: $REQ_SECRET" -X POST "https://enw9z3kw0afbh.x.pipedream.net"
           
