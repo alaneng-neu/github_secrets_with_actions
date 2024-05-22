@@ -10,7 +10,7 @@ jobs:
     
     steps:
       - name: Debugging Output
-        run: echo "Authorization header: ${{ secrets.REQ_SECRET }}"
+        run: echo "Authorization header ${{ secrets.REQ_SECRET }}"
 
       - name: Send POST request
         # Inspect requests at https://public.requestbin.com/r/enw9z3kw0afbh
